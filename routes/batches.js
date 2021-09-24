@@ -17,6 +17,8 @@ router.get("/getall",async (req,res)=>{
                 customBatch[key] = batch[key]
             }
             customBatch["items"] = await windrowModel.find({BNO:batch.BNO})
+            customBatch["NoOfCompletedWin"]= await windrowModel.find({status:5,BNO:batch.BNO}).countDocuments()
+            customBatch["NoOfActiveWin"]= await windrowModel.find({$and:[{$nor:[{status:5}]},{BNO:batch.BNO}]}).countDocuments()
             listA.push(customBatch)
         }
         res.send(listA);
@@ -25,15 +27,6 @@ router.get("/getall",async (req,res)=>{
     }
     
 });
-
-// router.get('/last',async(req,res)=>{
-//     try{
-//         let batch= await batchModel.findOne().sort({ field: 'asc', _id: -1 });
-//         res.json(batch);
-//     }catch(ex){
-//         return res.status(500).send("error"+ex.message);
-//     }
-// })
 
 router.post('/add',async (req,res) => { 
 

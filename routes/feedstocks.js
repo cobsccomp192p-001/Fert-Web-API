@@ -20,19 +20,14 @@ router.post('/add',async (req,res) => {
     {
         return res.status(400).send("Name is empty");
     }
-    if(!req.body.BNO)
-    {
-        return res.status(400).send("BNO is empty");
-    }
+    
     let lastFeedstock= await feedstockModel.findOne().sort({ field: 'asc', _id: -1 });
     let lastFNO= lastFeedstock.FNO.slice(1);
     let newFNO= parseInt(lastFNO)+1
 
     let feedstockData = new feedstockModel({
         FNO:"F"+newFNO,
-        BNO:req.body.BNO,
         Name:req.body.Name,
-        Quantity:req.body.Quantity,
         Supplier:req.body.Supplier,
         Type:req.body.Type
     })
@@ -69,7 +64,6 @@ router.put("/:id",async (req,res)=>{
     try{
     let feedstock= await feedstockModel.findByIdAndUpdate(reqID,{
         Name:req.body.Name,
-        Quantity:req.body.Quantity,
         Supplier:req.body.Supplier,
         Type:req.body.Type,
     });
