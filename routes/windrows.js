@@ -35,7 +35,8 @@ router.post('/add',async (req,res) => {
         FLevel4:req.body.FLevel4,
         FLevel5:req.body.FLevel5,
         Start_Date:req.body.Start_Date,
-        status:req.body.status
+        status:req.body.status,
+        probeNo:req.body.probeNo
     })
 
    try{
@@ -58,7 +59,9 @@ router.put("/:id",async (req,res)=>{
         FLevel3:req.body.FLevel3,
         FLevel4:req.body.FLevel4,
         FLevel5:req.body.FLevel5,
-        status:req.body.status
+        status:req.body.status,
+        probeNo:req.body.probeNo,
+        turn:req.body.turn
     });
 
     if(!windrow){

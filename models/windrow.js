@@ -38,6 +38,14 @@ const windrowSchema = mongoose.Schema({
     status: {
         type: Number,
         default: 0
+    },
+    probeNo: {
+        type:String,
+        default:"Unassigned"
+    },
+    turn: {
+        type: Number,
+        default: 0
     }
     
 

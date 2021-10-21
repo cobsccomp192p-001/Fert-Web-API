@@ -16,7 +16,7 @@ app.use(bodyparser.json({
 const batchRoutes = require('./routes/batches');
 const feedstockRoutes = require('./routes/feedstocks');
 const windrowRoutes = require('./routes/windrows');
-
+const probeRoutes = require('./routes/probes');
 
 
 //middleware
@@ -24,6 +24,7 @@ app.use(cors());
 app.use('/batch',batchRoutes);
 app.use('/feedstock',feedstockRoutes);
 app.use('/windrow',windrowRoutes);
+app.use('/probe',probeRoutes);
 
 
 mongoose.connect(process.env.DB_CONNECTION,{ 
